@@ -1,11 +1,27 @@
 {
     "tokenColors":  [
         {
-            "name": "Description",
+            "scope": "todo.checkbox",
+            "settings": {
+                "foreground": "#60FF57"
+            }
+        },
+        {
+            "scope": "todo.checkbox.undone",
+            "settings": {
+                "foreground": "#FF5D4C"
+            }
+        },
+        {
+            "scope": "todo.checkbox.done",
+            "settings": {
+                "foreground": "#4FE8A3"
+            }
+        },
+        {
             "scope": "todo.description",
             "settings": {
-                "foreground": "#dc3958",
-                "fontStyle": "bold underline"
+                "foreground": "#dc3958"
             }
         }
     ]

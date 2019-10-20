@@ -2,18 +2,51 @@
 	"scopeName": "source.todo",
 	"name": "todolang",
 	"patterns": [
-		{ "include": "#todo-item" },
-		{ "include": "#todo-description" }
+		{ "include": "#todo-item" }
 	],
   	"repository": {
 		"todo-item": {
-			"name": "todo.item",
 			"begin": " - ",
-			"end": "\n"
+			"beginCaptures": {
+				"0": {
+					"name": "todo.definition.begin"
+				}
+			},
+			"end": "\n",
+			"endCaptures": {
+				"0": {
+					"name": "todo.definition.end"
+				}
+			},
+			"name": "meta.structure.todo",
+			"patterns": [
+				{"comment": "the todo checkbox", "include": "#todo-checkbox"}, 
+				{"comment": "the todo type (optional)", "include": "#todo-type"}, 
+				{"comment": "the todo description", "include": "#todo-description"}
+			]
+		},
+		"todo-checkbox": {
+			"name": "todo.checkbox",
+			"patterns": [
+				{"include": "#todo-checkbox-undone" },
+				{"include": "#todo-checkbox-done" }
+			]
+		},
+		"todo-checkbox-undone": {
+			"name": "todo.checkbox.undone",
+			"match": "[ ]"
+		},
+		"todo-checkbox-done": {
+			"name": "todo.checkbox.done",
+			"match": "[x]"
+		},
+		"todo-type": {
+			"name": "todo.type",
+			"match": "🎨|🐛|📃|🔥"
 		},
 		"todo-description": {
 			"name": "todo.description",
-			"match": "TODO"
+			"match": "(\\w)+"
 		}
 	}
 }
