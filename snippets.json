@@ -1,8 +1,15 @@
 {
-	"Print to console": {
-		"prefix": ["todo", "create"],
+	"Create TODO item": {
+		"prefix": ["todo", "create todo"],
 		"body": [
-			"- [] ${1|🎨,🐛,📃,🔥|} ${2:description}"
+			"- ${3|[ ],[x]|} ${1|🎨,🐛,📃,🔥|} ${2:description}"
+		],
+		"description": "Create task (grouping of todo items)"
+	},
+	"Create todo group": {
+		"prefix": ["task", "group"],
+		"body": [
+			"$(#${1:task-id}) ${2:description}:"
 		],
 		"description": "Create TODO item"
 	}

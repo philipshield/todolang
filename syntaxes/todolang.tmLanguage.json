@@ -2,11 +2,38 @@
 	"scopeName": "source.todo",
 	"name": "todolang",
 	"patterns": [
+		{ "include": "#task-section" },
 		{ "include": "#todo-item" }
 	],
   	"repository": {
+
+		"task-section": {
+			"name": "tasksection",
+			"patterns": [
+				{ "include": "#task"},
+				{ "include": "#todo-item"}
+			]
+		},
+		"task": {
+			"name": "task",
+			"patterns": [
+				{ "include": "#task-id"},
+				{ "include": "#task-description"}
+			]
+		},
+		"task-id": {
+			"name": "task.id",
+			"match": "\\(#[a-zA-Z0-9-]+\\)"
+		},
+		"task-description": {
+			"name": "task.description",
+			"match": "(\\w)+"
+		},
+
+
+
 		"todo-item": {
-			"begin": " - ",
+			"begin": "- ",
 			"beginCaptures": {
 				"0": {
 					"name": "todo.definition.begin"
@@ -22,7 +49,8 @@
 			"patterns": [
 				{"comment": "the todo checkbox", "include": "#todo-checkbox"}, 
 				{"comment": "the todo type (optional)", "include": "#todo-type"}, 
-				{"comment": "the todo description", "include": "#todo-description"}
+				{"comment": "the todo description", "include": "#todo-description"},
+				{"comment": "todo tags", "include": "#todo-tags"}
 			]
 		},
 		"todo-checkbox": {
@@ -34,7 +62,7 @@
 		},
 		"todo-checkbox-undone": {
 			"name": "todo.checkbox.undone",
-			"match": "[ ]"
+			"match": "[n]"
 		},
 		"todo-checkbox-done": {
 			"name": "todo.checkbox.done",
@@ -47,6 +75,29 @@
 		"todo-description": {
 			"name": "todo.description",
 			"match": "(\\w)+"
+		},
+
+		"todo-tags": {
+			"begin": "\\(",
+			"beginCaptures": {
+				"0": {
+					"name": "todo.tags.begin"
+				}
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"0": {
+					"name": "todo.tags.end"
+				}
+			},
+			"name": "meta.structure.todo.tags",
+			"patterns": [
+				{ "include": "#todo-tag-important"}
+			]
+		},
+		"todo-tag-important": {
+			"name": "todo.tag.important",
+			"match": "!important"
 		}
 	}
 }

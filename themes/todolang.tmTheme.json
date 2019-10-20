@@ -1,6 +1,18 @@
 {
     "tokenColors":  [
         {
+            "scope": "task.id",
+            "settings": {
+                "foreground": "#CE52FF"
+            }
+        },
+        {
+            "scope": "task.description",
+            "settings": {
+                "foreground": "#FFCF8C"
+            }
+        },
+        {
             "scope": "todo.checkbox",
             "settings": {
                 "foreground": "#60FF57"
@@ -21,7 +33,13 @@
         {
             "scope": "todo.description",
             "settings": {
-                "foreground": "#dc3958"
+                "foreground": "#F4F5E1"
+            }
+        },
+        {
+            "scope": "todo.tag.important",
+            "settings": {
+                "foreground": "#F4F5E1"
             }
         }
     ]
