@@ -1,0 +1,38 @@
+{
+	"name": "todoer",
+	"displayName": "Todoer",
+	"description": "Tool for managing todo items.",
+	"version": "0.0.1",
+	"publisher": "philipshield",
+	"engines": {
+		"vscode": "^1.28.0"
+	},
+	"categories": [
+		"Snippets"
+	],
+	"contributes": {
+		"languages": [{
+            "id": "todolang",
+            "aliases": ["todolang", "todo"],
+			"extensions": [".todo"],
+			"configuration": "./language-configuration.json"
+		}],
+		"grammars": [{
+            "language": "todolang",
+            "scopeName": "source.todo",
+			"path": "./syntaxes/todolang.tmLanguage.json"
+		}],
+		"themes": [{
+			"label": "todolang main theme",
+			"id": "todolang_theme",
+			"uiTheme": "vs-dark",
+			"path": "./themes/todolang.tmTheme.json"
+		}],
+		"snippets": [
+			{
+				"language": "todolang",
+				"path": "./snippets.json"
+			}
+		]
+	}
+}

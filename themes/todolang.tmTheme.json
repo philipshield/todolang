@@ -1,0 +1,12 @@
+{
+    "tokenColors":  [
+        {
+            "name": "Description",
+            "scope": "todo.description",
+            "settings": {
+                "foreground": "#dc3958",
+                "fontStyle": "bold underline"
+            }
+        }
+    ]
+}

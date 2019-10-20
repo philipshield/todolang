@@ -1,0 +1,9 @@
+{
+	"Print to console": {
+		"prefix": ["todo", "create"],
+		"body": [
+			"- [] ${1|🎨,🐛,📃,🔥|} ${2:description}"
+		],
+		"description": "Create TODO item"
+	}
+}

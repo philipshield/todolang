@@ -1,0 +1,19 @@
+{
+	"scopeName": "source.todo",
+	"name": "todolang",
+	"patterns": [
+		{ "include": "#todo-item" },
+		{ "include": "#todo-description" }
+	],
+  	"repository": {
+		"todo-item": {
+			"name": "todo.item",
+			"begin": " - ",
+			"end": "\n"
+		},
+		"todo-description": {
+			"name": "todo.description",
+			"match": "TODO"
+		}
+	}
+}
