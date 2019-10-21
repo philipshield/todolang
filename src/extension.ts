@@ -40,7 +40,7 @@ export class Todoer implements vscode.CodeActionProvider {
 	}
 
 	public static isTagsLine(line: vscode.TextLine) {
-		const re = /\(.*\)\n/gi;
+		const re = /\(.*\)?/gi;
 		return re.test(line.text);
 	}
 

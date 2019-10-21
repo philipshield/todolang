@@ -10,7 +10,7 @@
 			"name": "meta.structure.nonfocus.section",
 			"begin": "\\([a-zA-Z, ]*nonfocus[a-zA-Z, ]*\\)\n",
 			"beginCaptures": { "0": { "name": "section.nonfocus.begin" } },
-			"end": "----\n",
+			"end": "----",
 			"endCaptures": { "0": { "name": "section.nonfocus.end" } }
 		},
 		"task-section": {

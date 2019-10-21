@@ -25,7 +25,7 @@ class Todoer {
         return REGEX_TICKED.test(line.text) || REGEX_UNTICKED.test(line.text);
     }
     static isTagsLine(line) {
-        const re = /\(.*\)\n/gi;
+        const re = /\(.*\)?/gi;
         return re.test(line.text);
     }
     static hasTag(line, tag) {
