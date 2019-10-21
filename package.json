@@ -5,34 +5,61 @@
 	"version": "0.0.1",
 	"publisher": "philipshield",
 	"engines": {
-		"vscode": "^1.28.0"
+		"vscode": "^1.32.0"
 	},
+	"activationEvents": [
+		"onLanguage:todolang"
+	],
 	"categories": [
 		"Snippets"
 	],
+	"main": "./out/extension",
 	"contributes": {
-		"languages": [{
-            "id": "todolang",
-            "aliases": ["todolang", "todo"],
-			"extensions": [".todo"],
-			"configuration": "./language-configuration.json"
-		}],
-		"grammars": [{
-            "language": "todolang",
-            "scopeName": "source.todo",
-			"path": "./syntaxes/todolang.tmLanguage.json"
-		}],
-		"themes": [{
-			"label": "todolang main theme",
-			"id": "todolang_theme",
-			"uiTheme": "vs-dark",
-			"path": "./themes/todolang.tmTheme.color-theme.json"
-		}],
+		"languages": [
+			{
+				"id": "todolang",
+				"aliases": [
+					"todolang",
+					"todo"
+				],
+				"extensions": [
+					".todo"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "todolang",
+				"scopeName": "source.todo",
+				"path": "./syntaxes/todolang.tmLanguage.json"
+			}
+		],
+		"themes": [
+			{
+				"label": "todolang main theme",
+				"id": "todolang_theme",
+				"uiTheme": "vs-dark",
+				"path": "./themes/todolang.tmTheme.color-theme.json"
+			}
+		],
 		"snippets": [
 			{
 				"language": "todolang",
 				"path": "./snippets.json"
 			}
 		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "tslint ./src/*.ts",
+		"watch": "tsc -watch -p ./"
+	},
+	"devDependencies": {
+		"@types/node": "^6.0.40",
+		"tslint": "^5.16.0",
+		"typescript": "^3.5.1",
+		"@types/vscode": "^1.32.0"
 	}
 }
