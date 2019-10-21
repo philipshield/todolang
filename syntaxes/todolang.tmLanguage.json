@@ -2,13 +2,19 @@
 	"scopeName": "source.todo",
 	"name": "todolang",
 	"patterns": [
-		{ "include": "#task-section" },
-		{ "include": "#todo-item" }
+		{ "include": "#non-focus-section"},
+		{ "include": "#task-section" }
 	],
 	"repository": {
-
+		"non-focus-section": {
+			"name": "meta.structure.nonfocus.section",
+			"begin": "\\([a-zA-Z, ]*nonfocus[a-zA-Z, ]*\\)\n",
+			"beginCaptures": { "0": { "name": "section.nonfocus.begin" } },
+			"end": "----\n",
+			"endCaptures": { "0": { "name": "section.nonfocus.end" } }
+		},
 		"task-section": {
-			"name": "tasksection",
+			"name": "meta.structure.task.section",
 			"patterns": [
 				{ "include": "#task"},
 				{ "include": "#todo-item"}
@@ -32,16 +38,10 @@
 		"todo-item": {
 			"begin": "- ",
 			"beginCaptures": {
-				"0": {
-					"name": "todo.definition.begin"
-				}
+				"0": { "name": "todo.definition.begin" }
 			},
 			"end": "\n",
-			"endCaptures": {
-				"0": {
-					"name": "todo.definition.end"
-				}
-			},
+			"endCaptures": { "0": { "name": "todo.definition.end" } },
 			"name": "meta.structure.todo",
 			"patterns": [
 				{"comment": "the todo checkbox", "include": "#todo-checkbox"}, 
@@ -76,17 +76,9 @@
 
 		"todo-tags": {
 			"begin": "\\(",
-			"beginCaptures": {
-				"0": {
-					"name": "todo.tags.begin"
-				}
-			},
+			"beginCaptures": { "0": { "name": "todo.tags.begin" } },
 			"end": "\\)",
-			"endCaptures": {
-				"0": {
-					"name": "todo.tags.end"
-				}
-			},
+			"endCaptures": { "0": { "name": "todo.tags.end" } },
 			"name": "meta.structure.todo.tags",
 			"patterns": [
 				{ "include": "#todo-tag-important"}

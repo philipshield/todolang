@@ -1,9 +1,15 @@
 {
     "tokenColors":  [
         {
+            "scope": "meta.structure.nonfocus.section",
+            "settings": {
+                "foreground": "#CE52FF55",
+            }
+        },
+        {
             "scope": "task.id",
             "settings": {
-                "foreground": "#CE52FF"
+                "foreground": "#CE52FF",
             }
         },
         {
