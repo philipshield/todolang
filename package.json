@@ -26,7 +26,7 @@
 			"label": "todolang main theme",
 			"id": "todolang_theme",
 			"uiTheme": "vs-dark",
-			"path": "./themes/todolang.tmTheme.json"
+			"path": "./themes/todolang.tmTheme.color-theme.json"
 		}],
 		"snippets": [
 			{

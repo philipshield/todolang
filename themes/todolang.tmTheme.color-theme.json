@@ -39,7 +39,7 @@
         {
             "scope": "todo.tag.important",
             "settings": {
-                "foreground": "#F4F5E1"
+                "foreground": "#ff0000"
             }
         }
     ]

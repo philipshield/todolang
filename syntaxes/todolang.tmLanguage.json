@@ -5,7 +5,7 @@
 		{ "include": "#task-section" },
 		{ "include": "#todo-item" }
 	],
-  	"repository": {
+	"repository": {
 
 		"task-section": {
 			"name": "tasksection",
@@ -62,7 +62,7 @@
 		},
 		"todo-checkbox-undone": {
 			"name": "todo.checkbox.undone",
-			"match": "[n]"
+			"match": "[ ]"
 		},
 		"todo-checkbox-done": {
 			"name": "todo.checkbox.done",
