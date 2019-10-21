@@ -28,6 +28,19 @@
 				"configuration": "./language-configuration.json"
 			}
 		],
+		"keybindings":[
+			{
+				"command": "extension.tickTodo",
+				"key": "alt-D"
+			}
+		],
+		"commands": [
+			{
+				"command": "extension.tickTodo",
+				"title": "Check/Uncheck TODO",
+				"category": "TODO"
+			}
+		],
 		"grammars": [
 			{
 				"language": "todolang",
