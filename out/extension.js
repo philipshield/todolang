@@ -24,6 +24,13 @@ class Todoer {
     static isTodoLine(line) {
         return REGEX_TICKED.test(line.text) || REGEX_UNTICKED.test(line.text);
     }
+    static isTagsLine(line) {
+        const re = /\(.*\)\n/gi;
+        return re.test(line.text);
+    }
+    static hasTag(line, tag) {
+        return line.text.includes(tag);
+    }
     static tickedLine(line) {
         const tmpTicked = "{0}";
         const tmpUnticked = "{1}";
@@ -42,6 +49,31 @@ class Todoer {
             fix.edit = new vscode.WorkspaceEdit();
             fix.edit.replace(document.uri, line.range, Todoer.tickedLine(line));
             actions.push(fix);
+        }
+        const tagConstants = ["nonfocus"];
+        if (Todoer.isTagsLine(line)) {
+            let linetext = line.text;
+            linetext = linetext.replace(/^\(+|\)+$/g, ''); // trim params
+            const tagsArray = linetext.replace(/\s/, "").split(",");
+            tagConstants.forEach(tagConstant => {
+                if (tagsArray.indexOf(tagConstant) > -1) {
+                    const fix = new vscode.CodeAction(`remove \"${tagConstant}\"`, vscode.CodeActionKind.Refactor);
+                    fix.edit = new vscode.WorkspaceEdit();
+                    const i = tagsArray.indexOf(tagConstant);
+                    tagsArray.splice(i, 1);
+                    const editedLine = `(${tagsArray.join(", ")})`;
+                    fix.edit.replace(document.uri, line.range, editedLine);
+                    actions.push(fix);
+                }
+                else {
+                    const fix = new vscode.CodeAction(`add \"${tagConstant}\"`, vscode.CodeActionKind.Refactor);
+                    fix.edit = new vscode.WorkspaceEdit();
+                    tagsArray.push(tagConstant);
+                    const editedLine = `(${tagsArray.join(", ")})`;
+                    fix.edit.replace(document.uri, line.range, editedLine);
+                    actions.push(fix);
+                }
+            });
         }
         return actions;
     }
