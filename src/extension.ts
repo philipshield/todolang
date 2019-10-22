@@ -58,16 +58,36 @@ export class Todoer implements vscode.CodeActionProvider {
 		editedLine = editedLine.replace(tmpUnticked, "[ ]");
 		return editedLine;
 	}
+
+	public static toggleImportant(line: vscode.TextLine): string {
+		const importantRe = /[a-zA-Z\\s]+!+/;
+		const isImportant = importantRe.test(line.text);
+		
+		let editedLine = line.text;
+		if(isImportant) {
+			editedLine = editedLine.replace(/([a-zA-Z\\s]+)!+/, "$1");
+		} else {
+			editedLine = editedLine + "!";
+		}
+
+
+		return editedLine;
+	}
 	
 	public provideCodeActions(document: vscode.TextDocument, range: vscode.Range): vscode.CodeAction[] {	
 		let actions : vscode.CodeAction[] = [];
 
 		let line = document.lineAt(range.start);
 		if(Todoer.isTodoLine(line)) {
-			const fix = new vscode.CodeAction("Tick TODO item", vscode.CodeActionKind.Refactor);
-			fix.edit = new vscode.WorkspaceEdit();
-			fix.edit.replace(document.uri, line.range, Todoer.tickedLine(line));
-			actions.push(fix);
+			const tickTodoFix = new vscode.CodeAction("Tick TODO item", vscode.CodeActionKind.Refactor);
+			tickTodoFix.edit = new vscode.WorkspaceEdit();
+			tickTodoFix.edit.replace(document.uri, line.range, Todoer.tickedLine(line));
+			actions.push(tickTodoFix);
+
+			const importantFix = new vscode.CodeAction("Mark/Unmark as important", vscode.CodeActionKind.Refactor);
+			importantFix.edit = new vscode.WorkspaceEdit();
+			importantFix.edit.replace(document.uri, line.range, Todoer.toggleImportant(line));
+			actions.push(importantFix);
 		}
 
 		const tagConstants = ["nonfocus"];

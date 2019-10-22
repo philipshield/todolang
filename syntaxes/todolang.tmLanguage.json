@@ -2,6 +2,7 @@
 	"scopeName": "source.todo",
 	"name": "todolang",
 	"patterns": [
+		{ "comment": "important description", "include": "#todo-description-important"},
 		{ "include": "#non-focus-section"},
 		{ "include": "#task-section" }
 	],
@@ -11,7 +12,8 @@
 			"begin": "\\([a-zA-Z, ]*nonfocus[a-zA-Z, ]*\\)\n",
 			"beginCaptures": { "0": { "name": "section.nonfocus.begin" } },
 			"end": "----",
-			"endCaptures": { "0": { "name": "section.nonfocus.end" } }
+			"endCaptures": { "0": { "name": "section.nonfocus.end" } },
+			"patterns": [{ "comment": "important description", "include": "#todo-description-important"}]
 		},
 		"task-section": {
 			"name": "meta.structure.task.section",
