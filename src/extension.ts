@@ -69,8 +69,7 @@ export class Todoer implements vscode.CodeActionProvider {
 		} else {
 			editedLine = editedLine + "!";
 		}
-
-
+		
 		return editedLine;
 	}
 	

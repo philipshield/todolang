@@ -4,13 +4,13 @@
 		"body": [
 			"- ${3|[ ],[x]|} ${1|🎉,🎨,🐛,📃,🔥|} ${2:description}\n$0"
 		],
-		"description": "Create task (grouping of todo items)"
+		"description": "Create Todo item"
 	},
 	"Create task": {
 		"prefix": ["task", "group", "create task"],
 		"body": [
 			"(task)\n(#${1:task-id}) ${2:description}:\n$0\n----"
 		],
-		"description": "Create TODO item"
+		"description": "Create task (grouping of todo items)"
 	}
 }
