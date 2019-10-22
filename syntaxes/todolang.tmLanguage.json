@@ -45,8 +45,9 @@
 			"name": "meta.structure.todo",
 			"patterns": [
 				{"comment": "the todo checkbox", "include": "#todo-checkbox"}, 
-				{"comment": "the todo type (optional)", "include": "#todo-type"}, 
-				{"comment": "the todo description", "include": "#todo-description"},
+				{"comment": "the todo type (optional)", "include": "#todo-type"},
+				{"comment": "important todo-description", "include": "#todo-description-important"},
+				{"comment": "regular todo-description", "include": "#todo-description"},
 				{"comment": "todo tags", "include": "#todo-tags"}
 			]
 		},
@@ -69,24 +70,13 @@
 			"name": "todo.type",
 			"match": "🎨|🐛|📃|🔥"
 		},
+		"todo-description-important": {
+			"name": "todo.description.important",
+			"match": "[a-zA-Z\\s]+!+"
+		},
 		"todo-description": {
 			"name": "todo.description",
-			"match": "(\\w)+"
-		},
-
-		"todo-tags": {
-			"begin": "\\(",
-			"beginCaptures": { "0": { "name": "todo.tags.begin" } },
-			"end": "\\)",
-			"endCaptures": { "0": { "name": "todo.tags.end" } },
-			"name": "meta.structure.todo.tags",
-			"patterns": [
-				{ "include": "#todo-tag-important"}
-			]
-		},
-		"todo-tag-important": {
-			"name": "todo.tag.important",
-			"match": "!important"
+			"match": "[a-zA-Z\\s]+"
 		}
 	}
 }

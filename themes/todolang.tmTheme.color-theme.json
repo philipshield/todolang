@@ -43,7 +43,7 @@
             }
         },
         {
-            "scope": "todo.tag.important",
+            "scope": "todo.description.important",
             "settings": {
                 "foreground": "#ff0000"
             }
