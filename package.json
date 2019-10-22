@@ -4,6 +4,7 @@
 	"description": "Tool for managing todo items.",
 	"version": "0.0.1",
 	"publisher": "philipshield",
+	"repository": { "type": "git", "url": "https://github.com/philipshield/Todoer"},
 	"engines": {
 		"vscode": "^1.32.0"
 	},
