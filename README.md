@@ -8,7 +8,8 @@ The todo syntax highlighter is designed for todo readability and parseability, f
 # Document Elements
 ![Demo](/img/todolang_demo.gif)
 ![Overview](/img/2.png)
-![Focus/Nonfocus tasks](/img/3.png)
+![Focused/Non-focused tasks](/img/3.png)
+![Refactorings/Suggested actions](/img/5.png)
 
 ## Refactorings
 Todoitem::tick - toggles the todo checkbox
