@@ -6,6 +6,7 @@ The extension provides tools for managing todo items within .todo files.
 The todo syntax highlighter is designed for todo readability and parseability, for example identifiying extra important todos and non-focused groups of todos.
 
 # Document Elements
+![Demo](/img/todolang_demo.gif)
 ![Overview](/img/2.png)
 ![Focus/Nonfocus tasks](/img/3.png)
 
