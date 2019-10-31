@@ -1,10 +1,10 @@
 {
-	"name": "todoer",
-	"displayName": "Todoer",
-	"description": "Tool for managing todo items.",
+	"name": "todolang",
+	"displayName": "todolang",
+	"description": ".todo files for managing todo items",
 	"version": "0.0.1",
 	"publisher": "philipshield",
-	"repository": { "type": "git", "url": "https://github.com/philipshield/Todoer"},
+	"repository": { "type": "git", "url": "https://github.com/philipshield/todolang"},
 	"engines": {
 		"vscode": "^1.32.0"
 	},

@@ -9,13 +9,13 @@
         {
             "scope": "task.id",
             "settings": {
-                "foreground": "#CE52FF",
+                "foreground": "#CE52FFAA",
             }
         },
         {
             "scope": "task.description",
             "settings": {
-                "foreground": "#FFCF8C"
+                "foreground": "#FFFFFF"
             }
         },
         {
@@ -39,7 +39,7 @@
         {
             "scope": "todo.description",
             "settings": {
-                "foreground": "#F4F5E1"
+                "foreground": "#ff7300"
             }
         },
         {

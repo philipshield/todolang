@@ -2,7 +2,7 @@
 	"Create TODO item": {
 		"prefix": ["todo", "create todo"],
 		"body": [
-			"- ${3|[ ],[x]|} ${1|🎉,🎨,🐛,📃,🔥|} ${2:description}\n$0"
+			"- ${3|[ ],[x]|} ${1|🎉,🎨,🐛,📃,🔥,🚚,🐟,👀|} ${2:description}\n$0"
 		],
 		"description": "Create Todo item"
 	},

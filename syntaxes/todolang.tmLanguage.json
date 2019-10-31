@@ -35,7 +35,7 @@
 		},
 		"task-description": {
 			"name": "task.description",
-			"match": "(\\w)+"
+			"match": "[a-zA-Z0-9- ]+:[ ]*$"
 		},
 		"todo-item": {
 			"begin": "- ",
@@ -70,7 +70,7 @@
 		},
 		"todo-type": {
 			"name": "todo.type",
-			"match": "🎨|🐛|📃|🔥"
+			"match": "( )|🎨|🐛|📃|🔥|🚚|🐟|👀"
 		},
 		"todo-description-important": {
 			"name": "todo.description.important",
