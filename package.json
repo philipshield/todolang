@@ -1,20 +1,15 @@
 {
 	"name": "todolang",
 	"displayName": "todolang",
-	"description": ".todo files for managing todo items",
+	"description": "Manage your todo items in .todo files",
 	"version": "0.0.1",
 	"publisher": "philipshield",
 	"repository": { "type": "git", "url": "https://github.com/philipshield/todolang"},
-	"engines": {
-		"vscode": "^1.32.0"
-	},
-	"activationEvents": [
-		"onLanguage:todolang"
-	],
-	"categories": [
-		"Snippets"
-	],
+	"categories": [ "Programming Languages" ],
+	"engines": { "vscode": "^1.32.0" },
 	"main": "./out/extension",
+	"preview": true,
+	"activationEvents": [ "onLanguage:todolang" ],
 	"contributes": {
 		"languages": [
 			{
@@ -32,6 +27,8 @@
 		"keybindings":[
 			{
 				"command": "extension.tickTodo",
+				"title": "Check/Uncheck TODO",
+				"category:": "TODO",
 				"key": "alt-D"
 			}
 		],
@@ -47,14 +44,6 @@
 				"language": "todolang",
 				"scopeName": "source.todo",
 				"path": "./syntaxes/todolang.tmLanguage.json"
-			}
-		],
-		"themes": [
-			{
-				"label": "todolang main theme",
-				"id": "todolang_theme",
-				"uiTheme": "vs-dark",
-				"path": "./themes/todolang.tmTheme.color-theme.json"
 			}
 		],
 		"snippets": [
