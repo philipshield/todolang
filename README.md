@@ -20,3 +20,7 @@ Task::nonfocus - marks a task a not in focus
 Create Task - create a task elements with optional JIRA ID.
 Create Todo - create a todo item with optional Unicode type
 
+# Debugging tips
+* There is a helpful editor debug command called: "Developer: Inspect Editor Tokens and Scopes"
+* When developing, check the highlighting experience with multiple different themes.
+
