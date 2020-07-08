@@ -1,4 +1,4 @@
-# Todoer
+# todolang
 Handle personal todo-items in a single .todo document.
 
 ## Get Started
