@@ -1,3 +1,7 @@
 {
-	
+	"comments": {
+		"lineComment": "//",
+		"blockComment": ["/*", "*/"]
+	  },
+	  "autoCloseBefore": "\n\t",
 }
