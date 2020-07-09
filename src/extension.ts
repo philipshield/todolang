@@ -6,10 +6,8 @@ export function activate(context: vscode.ExtensionContext) {
 		providedCodeActionKinds: Todolang.providedCodeActionKinds
 	})
 
-	context.subscriptions.push(
-		vscode.commands.registerCommand(Todolang.tickTodoCommandId, Todolang.tickTodoCommand), 
-		vscode.commands.registerCommand(Todolang.toggleImportantCommandId, Todolang.toggleImportantCommand)
-	);
+	context.subscriptions.push(vscode.commands.registerCommand(Todolang.tickTodoCommandId, Todolang.tickTodoCommand));
+	context.subscriptions.push(vscode.commands.registerCommand(Todolang.toggleImportantCommandId, Todolang.toggleImportantCommand));
 }
 
 export class Todolang implements vscode.CodeActionProvider {
