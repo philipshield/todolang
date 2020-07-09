@@ -1,73 +1,43 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 const vscode = require("vscode");
-const REGEX_UNTICKED = /\[ \]/gi;
-const REGEX_TICKED = /\[x\]/gi;
 function activate(context) {
-    context.subscriptions.push(vscode.languages.registerCodeActionsProvider('todolang', new Todoer(), {
-        providedCodeActionKinds: Todoer.providedCodeActionKinds
+    context.subscriptions.push(vscode.languages.registerCodeActionsProvider('todolang', new Todolang(), {
+        providedCodeActionKinds: Todolang.providedCodeActionKinds
     }));
-    context.subscriptions.push(vscode.commands.registerCommand('extension.tickTodo', function () {
+    context.subscriptions.push(vscode.commands.registerCommand(Todolang.tickTodoCommandId, function () {
         let editor = vscode.window.activeTextEditor;
         if (editor) {
             let document = editor.document;
             let selection = editor.selection;
             let line = document.lineAt(selection.anchor);
-            if (Todoer.isTodoLine(line)) {
-                editor.edit(editBuilder => editBuilder.replace(line.range, Todoer.tickedLine(line)));
+            if (Todolang.IsTodoLine(line.text)) {
+                editor.edit(editBuilder => {
+                    editBuilder.replace(line.range, Todolang.tickedLine(line.text));
+                });
             }
         }
     }));
 }
 exports.activate = activate;
-class Todoer {
-    static isTodoLine(line) {
-        return REGEX_TICKED.test(line.text) || REGEX_UNTICKED.test(line.text);
-    }
-    static isTagsLine(line) {
-        const re = /\(.*\)?/gi;
-        return re.test(line.text);
-    }
-    static hasTag(line, tag) {
-        return line.text.includes(tag);
-    }
-    static tickedLine(line) {
-        const tmpTicked = "{0}";
-        const tmpUnticked = "{1}";
-        let editedLine = line.text;
-        editedLine = editedLine.replace(REGEX_UNTICKED, tmpTicked);
-        editedLine = editedLine.replace(REGEX_TICKED, tmpUnticked);
-        editedLine = editedLine.replace(tmpTicked, "[x]");
-        editedLine = editedLine.replace(tmpUnticked, "[ ]");
-        return editedLine;
-    }
-    static toggleImportant(line) {
-        const importantRe = /[a-zA-Z\\s]+!+/;
-        const isImportant = importantRe.test(line.text);
-        let editedLine = line.text;
-        if (isImportant) {
-            editedLine = editedLine.replace(/([a-zA-Z\\s]+)!+/, "$1");
-        }
-        else {
-            editedLine = editedLine + "!";
-        }
-        return editedLine;
-    }
-    provideCodeActions(document, range) {
+class Todolang {
+    provideCodeActions(document, range, context) {
         let actions = [];
         let line = document.lineAt(range.start);
-        if (Todoer.isTodoLine(line)) {
-            const tickTodoFix = new vscode.CodeAction("Tick TODO item", vscode.CodeActionKind.Refactor);
-            tickTodoFix.edit = new vscode.WorkspaceEdit();
-            tickTodoFix.edit.replace(document.uri, line.range, Todoer.tickedLine(line));
-            actions.push(tickTodoFix);
+        if (Todolang.IsTodoLine(line.text)) {
+            const todoFix = new vscode.CodeAction("Tick Todo", vscode.CodeActionKind.Refactor);
+            todoFix.command = {
+                title: "Tick Todo",
+                command: Todolang.tickTodoCommandId
+            };
+            actions.push(todoFix);
             const importantFix = new vscode.CodeAction("Mark/Unmark as important", vscode.CodeActionKind.Refactor);
             importantFix.edit = new vscode.WorkspaceEdit();
-            importantFix.edit.replace(document.uri, line.range, Todoer.toggleImportant(line));
+            importantFix.edit.replace(document.uri, line.range, Todolang.toggleImportant(line));
             actions.push(importantFix);
         }
         const tagConstants = ["nonfocus"];
-        if (Todoer.isTagsLine(line)) {
+        if (Todolang.isTagsLine(line)) {
             let linetext = line.text;
             linetext = linetext.replace(/^\(+|\)+$/g, ''); // trim params
             const tagsArray = linetext.replace(/\s/, "").split(",");
@@ -93,9 +63,40 @@ class Todoer {
         }
         return actions;
     }
+    static IsTodoLine(line) {
+        return /\[x\]/gi.test(line) || /\[ \]/gi.test(line);
+    }
+    static tickedLine(line) {
+        const tmpTicked = "{0}";
+        const tmpUnticked = "{1}";
+        let editedLine = line;
+        editedLine = editedLine.replace(/\[ \]/gi, tmpTicked);
+        editedLine = editedLine.replace(/\[x\]/gi, tmpUnticked);
+        editedLine = editedLine.replace(tmpTicked, "[x]");
+        editedLine = editedLine.replace(tmpUnticked, "[ ]");
+        return editedLine;
+    }
+    static isTagsLine(line) {
+        const re = /\(.*\)?/gi;
+        return re.test(line.text);
+    }
+    static hasTag(line, tag) {
+        return line.text.includes(tag);
+    }
+    static toggleImportant(line) {
+        const importantRe = /[a-zA-Z\\s]+!+/;
+        const isImportant = importantRe.test(line.text);
+        let editedLine = line.text;
+        if (isImportant) {
+            editedLine = editedLine.replace(/([a-zA-Z\\s]+)!+/, "$1");
+        }
+        else {
+            editedLine = editedLine + "!";
+        }
+        return editedLine;
+    }
 }
-exports.Todoer = Todoer;
-Todoer.providedCodeActionKinds = [
-    vscode.CodeActionKind.Refactor
-];
+exports.Todolang = Todolang;
+Todolang.tickTodoCommandId = "extension.tickTodo";
+Todolang.providedCodeActionKinds = [vscode.CodeActionKind.Refactor];
 //# sourceMappingURL=extension.js.map
