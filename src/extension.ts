@@ -8,32 +8,19 @@ export function activate(context: vscode.ExtensionContext) {
 		}));
 
 	context.subscriptions.push(
-		vscode.commands.registerCommand(Todolang.tickTodoCommandId, function () {
-			let editor = vscode.window.activeTextEditor;
-			if (editor) {
-				let document = editor.document;
-				let selection = editor.selection;
-				let line = document.lineAt(selection.anchor);
-
-				if(Todolang.IsTodoLine(line.text)) {
-					editor.edit(editBuilder => {
-						editBuilder.replace(line.range, Todolang.tickedLine(line.text));
-					});
-				}
-			}
-		})
+		vscode.commands.registerCommand(Todolang.tickTodoCommandId, Todolang.tickTodoCommand)
 	);
 }
 
 export class Todolang implements vscode.CodeActionProvider {
-	public static readonly tickTodoCommandId: string = "extension.tickTodo";
 	public static readonly providedCodeActionKinds = [ vscode.CodeActionKind.Refactor ];
+	public static readonly tickTodoCommandId: string = "extension.tickTodo";
 
 	public provideCodeActions(document: vscode.TextDocument, range: vscode.Range, context: vscode.CodeActionContext): (vscode.CodeAction)[] {	
 		let actions : (vscode.CodeAction)[] = [];
 
 		let line = document.lineAt(range.start);
-		if(Todolang.IsTodoLine(line.text)) {
+		if(Todolang.isTodoLine(line.text)) {
 			const todoFix = new vscode.CodeAction("Tick Todo", vscode.CodeActionKind.Refactor);
 			todoFix.command = <vscode.Command> {
 				title: "Tick Todo",
@@ -77,11 +64,26 @@ export class Todolang implements vscode.CodeActionProvider {
 		return actions;
 	}
 
-	public static IsTodoLine(line: string): boolean {
+	public static tickTodoCommand(tickTodoCommandId: string) {
+		let editor = vscode.window.activeTextEditor;
+		if (editor) {
+			let document = editor.document;
+			let selection = editor.selection;
+			let line = document.lineAt(selection.anchor);
+
+			if(Todolang.isTodoLine(line.text)) {
+				editor.edit(editBuilder => {
+					editBuilder.replace(line.range, Todolang.tickedLine(line.text));
+				});
+			}
+		}
+	}
+
+	private static isTodoLine(line: string): boolean {
 		return /\[x\]/gi.test(line) || /\[ \]/gi.test(line);
 	}
 
-	public static tickedLine(line: string): string {
+	private static tickedLine(line: string): string {
 		const tmpTicked = "{0}"
 		const tmpUnticked = "{1}"
 		let editedLine = line;
