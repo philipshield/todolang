@@ -26,8 +26,8 @@
 		],
 		"keybindings":[
 			{
-				"command": "extension.tickTodo",
 				"title": "Check/Uncheck TODO",
+				"command": "extension.tickTodo",
 				"category:": "TODO",
 				"key": "alt-D"
 			}
