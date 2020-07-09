@@ -3,8 +3,7 @@
 (task)
 (#CM-1234) Cool new game:
     - [ ] 🎨 variable for command names.
-    - [ ] 🎉 description.
-    
+    - [ ] 🎉 description
 ----
 
 (task, nonfocus)

@@ -2,80 +2,97 @@
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
-	context.subscriptions.push(
-		vscode.languages.registerCodeActionsProvider('todolang', new Todolang(), {
-			providedCodeActionKinds: Todolang.providedCodeActionKinds
-		}));
+	vscode.languages.registerCodeActionsProvider('todolang', new Todolang(), {
+		providedCodeActionKinds: Todolang.providedCodeActionKinds
+	})
 
 	context.subscriptions.push(
-		vscode.commands.registerCommand(Todolang.tickTodoCommandId, Todolang.tickTodoCommand)
+		vscode.commands.registerCommand(Todolang.tickTodoCommandId, Todolang.tickTodoCommand), 
+		vscode.commands.registerCommand(Todolang.toggleImportantCommandId, Todolang.toggleImportantCommand)
 	);
 }
 
 export class Todolang implements vscode.CodeActionProvider {
 	public static readonly providedCodeActionKinds = [ vscode.CodeActionKind.Refactor ];
-	public static readonly tickTodoCommandId: string = "extension.tickTodo";
+	public static readonly tickTodoCommandId: string = "todolang.tickTodo";
+	public static readonly toggleImportantCommandId: string = "todolang.toggleImportant"
 
 	public provideCodeActions(document: vscode.TextDocument, range: vscode.Range, context: vscode.CodeActionContext): (vscode.CodeAction)[] {	
 		let actions : (vscode.CodeAction)[] = [];
 
 		let line = document.lineAt(range.start);
 		if(Todolang.isTodoLine(line.text)) {
-			const todoFix = new vscode.CodeAction("Tick Todo", vscode.CodeActionKind.Refactor);
-			todoFix.command = <vscode.Command> {
-				title: "Tick Todo",
-				command: Todolang.tickTodoCommandId
-			};
+			const todoFix = new vscode.CodeAction("Tick", vscode.CodeActionKind.Refactor);
+			todoFix.command = <vscode.Command> { command: Todolang.tickTodoCommandId };
 			actions.push(todoFix);
 		
 			const importantFix = new vscode.CodeAction("Mark/Unmark as important", vscode.CodeActionKind.Refactor);
-			importantFix.edit = new vscode.WorkspaceEdit();
-			importantFix.edit.replace(document.uri, line.range, Todolang.toggleImportant(line));
+			importantFix.command = <vscode.Command> { command: Todolang.toggleImportantCommandId };
 			actions.push(importantFix);
 		}
 
-		const tagConstants = ["nonfocus"];
 		if(Todolang.isTagsLine(line))
 		{
-			let linetext = line.text;
-			linetext = linetext.replace(/^\(+|\)+$/g, ''); // trim params
-			const tagsArray = linetext.replace(/\s/, "").split(",");
-
-			tagConstants.forEach(tagConstant => {
-				if(tagsArray.indexOf(tagConstant) > -1) {
-					const fix = new vscode.CodeAction(`remove \"${tagConstant}\"`, vscode.CodeActionKind.Refactor);
-					fix.edit = new vscode.WorkspaceEdit();
-					const i = tagsArray.indexOf(tagConstant);
-					tagsArray.splice(i, 1);
-					const editedLine = `(${tagsArray.join(", ")})`;
-					fix.edit.replace(document.uri, line.range, editedLine);
-					actions.push(fix);
-				} else {
-					const fix = new vscode.CodeAction(`add \"${tagConstant}\"`, vscode.CodeActionKind.Refactor);
-					fix.edit = new vscode.WorkspaceEdit();
-					tagsArray.push(tagConstant);
-					const editedLine = `(${tagsArray.join(", ")})`;
-					fix.edit.replace(document.uri, line.range, editedLine);
-					actions.push(fix);
-				}
+			var tagActions = Todolang.getTagActions(document, line);
+			tagActions.forEach(action => {
+				actions.push(action);
 			});
 		}
 
 		return actions;
 	}
 
-	public static tickTodoCommand(tickTodoCommandId: string) {
+	public static tickTodoCommand() {
+		Todolang.editActive((builder, line) => {
+			if(Todolang.isTodoLine(line.text)) {
+				builder.replace(line.range, Todolang.tickedLine(line.text));
+			}
+		});
+	}
+
+	public static toggleImportantCommand() {
+		Todolang.editActive((builder, line) => {
+			if(Todolang.isTodoLine(line.text)) {
+				builder.replace(line.range, Todolang.toggleImportant(line));
+			}
+		});
+	}
+
+	private static getTagActions(document: vscode.TextDocument, line: vscode.TextLine) : vscode.CodeAction[]{
+		const tagConstants = ["nonfocus"];
+		let linetext = line.text;
+		linetext = linetext.replace(/^\(+|\)+$/g, ''); // trim params
+		const tagsArray = linetext.replace(/\s/, "").split(",");
+
+		var actions : (vscode.CodeAction)[] = [];
+		tagConstants.forEach(tagConstant => {
+			if(tagsArray.indexOf(tagConstant) > -1) {
+				const fix = new vscode.CodeAction(`remove \"${tagConstant}\"`, vscode.CodeActionKind.Refactor);
+				fix.edit = new vscode.WorkspaceEdit();
+				const i = tagsArray.indexOf(tagConstant);
+				tagsArray.splice(i, 1);
+				const editedLine = `(${tagsArray.join(", ")})`;
+				fix.edit.replace(document.uri, line.range, editedLine);
+				actions.push(fix);
+			} else {
+				const fix = new vscode.CodeAction(`add \"${tagConstant}\"`, vscode.CodeActionKind.Refactor);
+				fix.edit = new vscode.WorkspaceEdit();
+				tagsArray.push(tagConstant);
+				const editedLine = `(${tagsArray.join(", ")})`;
+				fix.edit.replace(document.uri, line.range, editedLine);
+				actions.push(fix);
+			}
+		});
+		return actions;
+	}
+
+	private static editActive(callback: (editBuilder: vscode.TextEditorEdit, line: vscode.TextLine) => void) {
 		let editor = vscode.window.activeTextEditor;
 		if (editor) {
 			let document = editor.document;
 			let selection = editor.selection;
 			let line = document.lineAt(selection.anchor);
-
-			if(Todolang.isTodoLine(line.text)) {
-				editor.edit(editBuilder => {
-					editBuilder.replace(line.range, Todolang.tickedLine(line.text));
-				});
-			}
+			editor.edit(builder => callback(builder, line));
 		}
 	}
 
@@ -94,7 +111,7 @@ export class Todolang implements vscode.CodeActionProvider {
 		return editedLine;
 	}
 
-	private static isTagsLine(line: vscode.TextLine) {
+	private static isTagsLine(line: vscode.TextLine): boolean {
 		const re = /\(.*\)?/gi;
 		return re.test(line.text);
 	}
