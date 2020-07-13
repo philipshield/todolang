@@ -16,6 +16,7 @@
     - [ ] 🎉 Grammar feature: todo description/comments/notes.
     - [ ] 🎉 CodeAction: select task/todo/group.
     - [ ] 🎉 CodeAction: TickTodos multiselection
+    - [ ] 🐛 Mark as important doesn't handle other ending characters like "." or "?"
     - [x] 🚚 Grammar scopes for "non-focused task"
 ----
 
