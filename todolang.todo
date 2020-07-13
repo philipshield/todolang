@@ -1,6 +1,7 @@
-
-(task)
-(#todolang) todolang project todos:    
+Todolang:
+    - [ ] 🎉 Create logotype for extension.
+    - [ ] 🐟 build is not in .gitignore
+    - [ ] 🎉 Grammar: make task grammar cleaner
     - [ ] 🎉 Collaboration Feature: cloud storage / github
     - [ ] 🎉 Code Feature: server side Jira Completion provider
     - [ ] 📃 Introduce new users to main concepts better
