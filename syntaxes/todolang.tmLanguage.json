@@ -9,7 +9,7 @@
 	"repository": {
 		"non-focus-section": {
 			"name": "comment.block",
-			"begin": "\\([a-zA-Z, ]*nonfocus[a-zA-Z, ]*\\)\n",
+			"begin": "\\(.*nonfocus.*\\).*\n",
 			"end": "----",
 			"patterns": [{ "include": "#todo-description-important", "comment": "important description"}]
 		},

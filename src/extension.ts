@@ -29,13 +29,10 @@ export class Todolang implements vscode.CodeActionProvider {
 			actions.push(importantFix);
 		}
 
-		if(Todolang.isTagsLine(line))
-		{
-			var tagActions = Todolang.getTagActions(document, line);
-			tagActions.forEach(action => {
-				actions.push(action);
-			});
-		}
+		var tagActions = Todolang.getTagActions(document, line);
+		tagActions.forEach(action => {
+			actions.push(action);
+		});
 
 		return actions;
 	}
@@ -58,29 +55,43 @@ export class Todolang implements vscode.CodeActionProvider {
 
 	private static getTagActions(document: vscode.TextDocument, line: vscode.TextLine) : vscode.CodeAction[]{
 		const tagConstants = ["nonfocus"];
-		let linetext = line.text;
-		linetext = linetext.replace(/^\(+|\)+$/g, ''); // trim params
-		const tagsArray = linetext.replace(/\s/, "").split(",");
+		const tagsLineRegex = /\(.*\)/gi;
+		
+		let tagsMatches = tagsLineRegex.exec(line.text);
+		let actions : (vscode.CodeAction)[] = [];
+		if(tagsMatches != null)
+		{
+			let match = tagsMatches[0];
+			let matchStart = line.text.indexOf(match);
+			let matchEnd = matchStart + match.length;
+			let matchRange = new vscode.Range(new vscode.Position(line.lineNumber, matchStart), new vscode.Position(line.lineNumber, matchEnd));
+			let innerText = match.replace(/^\(+|\)+$/g, ''); // trim
+			let tags = innerText.replace(/\s/, "").split(",").filter(x => x.length > 0); // TODO: remove empty elements
 
-		var actions : (vscode.CodeAction)[] = [];
-		tagConstants.forEach(tagConstant => {
-			if(tagsArray.indexOf(tagConstant) > -1) {
-				const fix = new vscode.CodeAction(`remove \"${tagConstant}\"`, vscode.CodeActionKind.Refactor);
-				fix.edit = new vscode.WorkspaceEdit();
-				const i = tagsArray.indexOf(tagConstant);
-				tagsArray.splice(i, 1);
-				const editedLine = `(${tagsArray.join(", ")})`;
-				fix.edit.replace(document.uri, line.range, editedLine);
-				actions.push(fix);
-			} else {
-				const fix = new vscode.CodeAction(`add \"${tagConstant}\"`, vscode.CodeActionKind.Refactor);
-				fix.edit = new vscode.WorkspaceEdit();
-				tagsArray.push(tagConstant);
-				const editedLine = `(${tagsArray.join(", ")})`;
-				fix.edit.replace(document.uri, line.range, editedLine);
-				actions.push(fix);
-			}
-		});
+			tagConstants.forEach(tagConstant => {
+				if(tags.indexOf(tagConstant) > -1) {
+					const fix = new vscode.CodeAction(`remove \"${tagConstant}\"`, vscode.CodeActionKind.Refactor);
+					fix.edit = new vscode.WorkspaceEdit();
+
+					const i = tags.indexOf(tagConstant);
+					tags.splice(i, 1);
+					const newTags = `(${tags.join(", ")})`;
+					fix.edit.replace(document.uri, matchRange, newTags);
+					
+					actions.push(fix);
+				} else {
+					const fix = new vscode.CodeAction(`add \"${tagConstant}\"`, vscode.CodeActionKind.Refactor);
+					fix.edit = new vscode.WorkspaceEdit();
+
+					tags.push(tagConstant);
+					const editedLine = `(${tags.join(", ")})`;
+					fix.edit.replace(document.uri, matchRange, editedLine);
+
+					actions.push(fix);
+				}
+			});
+		}
+
 		return actions;
 	}
 
@@ -108,12 +119,6 @@ export class Todolang implements vscode.CodeActionProvider {
 		editedLine = editedLine.replace(tmpUnticked, "[ ]");
 		return editedLine;
 	}
-
-	private static isTagsLine(line: vscode.TextLine): boolean {
-		const re = /\(.*\)?/gi;
-		return re.test(line.text);
-	}
-
 	private static hasTag(line: vscode.TextLine, tag: string) {
 		return line.text.includes(tag);
 	}

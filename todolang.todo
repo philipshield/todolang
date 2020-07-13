@@ -1,11 +1,12 @@
-Todolang:
+(#TD-1233) Todolang:
     - [ ] 🎉 Create logotype for extension.
     - [ ] 🐟 build is not in .gitignore
-    - [ ] 🎉 Grammar: make task grammar cleaner
+    - [x] 🎉 Grammar: make task grammar cleaner
     - [ ] 🎉 Collaboration Feature: cloud storage / github
     - [ ] 🎉 Code Feature: server side Jira Completion provider
     - [ ] 📃 Introduce new users to main concepts better
-    - [ ] 🐟 Todo eol preventing snippet on consecutive line. 
+    - [ ] 📃 Readme tutorial is too verbose
+    - [x] 🐟 Todo eol preventing snippet on consecutive line. 
     - [ ] 🎉 Format on Save
     - [ ] 🎉 Customize emojis and key-bindings.
     - [ ] 🐟 "tags" refactor suggestion on todo-line code action context.
@@ -13,8 +14,7 @@ Todolang:
     - [ ] 🎉 CodeAction: Add task for current group/selection.
     - [ ] 🎉 Code feature: Go-To symbol task/todo.
     - [ ] 🐟 Prevent intellisense suggesting snippet keywords
-    - [ ] 🐟 important scope not working after string symbol (")
-    - [ ] 🎉 Grammar feature: todo description/comments/notes.
+    - [ ] 🎉 Grammar feature: description/comments/notes for TODO item.
     - [ ] 🎉 CodeAction: select task/todo/group.
     - [ ] 🎉 CodeAction: TickTodos multiselection
     - [ ] 🐛 Mark as important doesn't handle other ending characters like "." or "?"
