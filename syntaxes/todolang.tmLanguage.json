@@ -32,7 +32,7 @@
 			"match": "\\(#[a-zA-Z0-9-]+\\)"
 		},
 		"task-description": {
-			"name": "markup.heading.2",
+			"name": "markup.bold",
 			"match": "[a-zA-Z0-9- ]+:[ ]*$"
 		},
 		"todo-item": {
@@ -67,11 +67,11 @@
 			"match": "( )|🎨|🐛|📃|🔥|🚚|🐟|👀"
 		},
 		"todo-description-important": {
-			"name": "invalid.depricated",
+			"name": "invalid.illegal",
 			"match": "[a-zA-Z\\s]+!+"
 		},
 		"todo-description": {
-			"name": "markup.bold",
+			"name": "string.double",
 			"match": "[a-zA-Z\\s]+"
 		}
 	}
