@@ -21,7 +21,7 @@
 			]
 		},
 		"task": {
-			"name": "entity.task",
+			"name": "meta.task",
 			"patterns": [
 				{ "include": "#task-id"},
 				{ "include": "#task-description"}
@@ -68,7 +68,7 @@
 		},
 		"todo-description-important": {
 			"name": "invalid.illegal",
-			"match": "[a-zA-Z\\s]+!+"
+			"match": "(?:[^\\:\\]]+)(?:!+)"
 		},
 		"todo-description": {
 			"name": "string.double",
