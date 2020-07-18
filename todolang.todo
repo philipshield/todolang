@@ -1,6 +1,6 @@
-(#TD-1233) Todolang:
-    - [ ] 🎉 Create logotype for extension.
-    - [ ] 🐟 build is not in .gitignore
+Todolang:
+    - [ ] 🎉 Create logotype for extension
+    - [x] 🐟 build is not in .gitignore
     - [x] 🎉 Grammar: make task grammar cleaner
     - [ ] 🎉 Collaboration Feature: cloud storage / github
     - [ ] 🎉 Code Feature: server side Jira Completion provider
