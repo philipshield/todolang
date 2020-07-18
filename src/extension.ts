@@ -7,13 +7,15 @@ export function activate(context: vscode.ExtensionContext) {
 	})
 
 	context.subscriptions.push(vscode.commands.registerCommand(Todolang.tickTodoCommandId, Todolang.tickTodoCommand));
-	context.subscriptions.push(vscode.commands.registerCommand(Todolang.toggleImportantCommandId, Todolang.toggleImportantCommand));
+  context.subscriptions.push(vscode.commands.registerCommand(Todolang.toggleImportantCommandId, Todolang.toggleImportantCommand));
+  context.subscriptions.push(vscode.commands.registerCommand(Todolang.sortByTickedCommandId, Todolang.sortByTickedCommand));
 }
 
 export class Todolang implements vscode.CodeActionProvider {
 	public static readonly providedCodeActionKinds = [ vscode.CodeActionKind.Refactor ];
 	public static readonly tickTodoCommandId: string = "todolang.tickTodo";
-	public static readonly toggleImportantCommandId: string = "todolang.toggleImportant"
+  public static readonly toggleImportantCommandId: string = "todolang.toggleImportant"
+  public static readonly sortByTickedCommandId: string = "todolang.sortByTickedCommandId"
 
 	public provideCodeActions(document: vscode.TextDocument, range: vscode.Range, context: vscode.CodeActionContext): (vscode.CodeAction)[] {	
 		let actions : (vscode.CodeAction)[] = [];
@@ -26,7 +28,11 @@ export class Todolang implements vscode.CodeActionProvider {
 		
 			const importantFix = new vscode.CodeAction("Mark/Unmark as important", vscode.CodeActionKind.Refactor);
 			importantFix.command = <vscode.Command> { command: Todolang.toggleImportantCommandId };
-			actions.push(importantFix);
+      actions.push(importantFix);
+      
+      const sortFix = new vscode.CodeAction("Sort by ticked", vscode.CodeActionKind.Refactor);
+			sortFix.command = <vscode.Command> { command: Todolang.sortByTickedCommandId };
+			actions.push(sortFix);
 		}
 
 		var tagActions = Todolang.getTagActions(document, line);
@@ -38,7 +44,7 @@ export class Todolang implements vscode.CodeActionProvider {
 	}
 
 	public static tickTodoCommand() {
-		Todolang.editActive((builder, line) => {
+		Todolang.editActive((builder, document, line) => {
 			if(Todolang.isTodoLine(line.text)) {
 				builder.replace(line.range, Todolang.tickedLine(line.text));
 			}
@@ -46,13 +52,54 @@ export class Todolang implements vscode.CodeActionProvider {
 	}
 
 	public static toggleImportantCommand() {
-		Todolang.editActive((builder, line) => {
+		Todolang.editActive((builder, document, line) => {
 			if(Todolang.isTodoLine(line.text)) {
 				builder.replace(line.range, Todolang.toggleImportant(line));
 			}
 		});
-	}
+  }
 
+  public static sortByTickedCommand() {
+		Todolang.editActive((builder, document, line) => {
+			if(Todolang.isTodoLine(line.text)) {
+        // Start of todo collection
+        var currentLine = line.lineNumber;
+        while(Todolang.isTodoLine(document.lineAt(currentLine).text))
+        {
+          currentLine--;
+        }
+        var start = currentLine + 1;
+
+        // End of todo collection
+        currentLine = line.lineNumber;
+        while(Todolang.isTodoLine(document.lineAt(currentLine).text))
+        {
+          currentLine++;
+        }
+        var end = currentLine;
+
+        // Sort.
+        var todos = [];
+        for (let lineNumber = start; lineNumber < end; lineNumber++) {
+          todos.push(document.lineAt(lineNumber).text + "\n");
+        }
+        todos = todos.sort(text => {
+            var ticked = text.includes("[x]");
+            if(ticked) 
+            {
+              return -1;
+            }
+            return 1;
+        });
+        var edited: string = todos.join("");
+
+        // Edit.
+        let range = new vscode.Range(new vscode.Position(start, 0), new vscode.Position(end, 0));
+        builder.replace(range, edited);
+			}
+		});
+  }
+  
 	private static getTagActions(document: vscode.TextDocument, line: vscode.TextLine) : vscode.CodeAction[]{
 		const tagConstants = ["nonfocus"];
 		const tagsLineRegex = /\(.*\)/gi;
@@ -95,13 +142,13 @@ export class Todolang implements vscode.CodeActionProvider {
 		return actions;
 	}
 
-	private static editActive(callback: (editBuilder: vscode.TextEditorEdit, line: vscode.TextLine) => void) {
+	private static editActive(callback: (editBuilder: vscode.TextEditorEdit, document:vscode.TextDocument, line: vscode.TextLine) => void) {
 		let editor = vscode.window.activeTextEditor;
 		if (editor) {
 			let document = editor.document;
 			let selection = editor.selection;
 			let line = document.lineAt(selection.anchor);
-			editor.edit(builder => callback(builder, line));
+			editor.edit(builder => callback(builder, document, line));
 		}
 	}
 
