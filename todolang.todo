@@ -8,7 +8,7 @@ Todolang:
     - [ ] 📃 Readme tutorial is too verbose
     - [x] 🐟 Todo eol preventing snippet on consecutive line. 
     - [ ] 🎉 Format on Save
-    - [ ] 🎉 Customize emojis and key-bindings.
+    - [ ] 🎉 Customize emojis and key-bindings
     - [ ] 🐟 "tags" refactor suggestion on todo-line code action context.
     - [ ] 🎉 CodeAction: change type (emoji)
     - [ ] 🎉 CodeAction: Add task for current group/selection.
@@ -19,5 +19,6 @@ Todolang:
     - [ ] 🎉 CodeAction: TickTodos multiselection
     - [ ] 🐛 Mark as important doesn't handle other ending characters like "." or "?"
     - [x] 🚚 Grammar scopes for "non-focused task"
+    - [ ] 🚚 Support adding tags to task when no paranthesis exists
 ----
 
