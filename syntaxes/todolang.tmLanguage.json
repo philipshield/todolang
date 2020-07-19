@@ -2,29 +2,49 @@
 	"scopeName": "source.todo",
 	"name": "todolang",
 	"patterns": [
-		{ "include": "#todo-description-important", "comment": "important description"},
-		{ "include": "#non-focus-section"},
-		{ "include": "#task-section" }
+		{
+			"include": "#todo-description-important",
+			"comment": "important description"
+		},
+		{
+			"include": "#non-focus-section"
+		},
+		{
+			"include": "#task-section"
+		}
 	],
 	"repository": {
 		"non-focus-section": {
 			"name": "comment.block",
 			"begin": "\\(.*nonfocus.*\\).*\n",
 			"end": "----",
-			"patterns": [{ "include": "#todo-description-important", "comment": "important description"}]
+			"patterns": [
+				{
+					"include": "#todo-description-important",
+					"comment": "important description"
+				}
+			]
 		},
 		"task-section": {
 			"name": "meta.section",
 			"patterns": [
-				{ "include": "#task"},
-				{ "include": "#todo-item"}
+				{
+					"include": "#task"
+				},
+				{
+					"include": "#todo-item"
+				}
 			]
 		},
 		"task": {
 			"name": "meta.task",
 			"patterns": [
-				{ "include": "#task-id"},
-				{ "include": "#task-description"}
+				{
+					"include": "#task-id"
+				},
+				{
+					"include": "#task-description"
+				}
 			]
 		},
 		"task-id": {
@@ -40,18 +60,37 @@
 			"begin": "- ",
 			"end": "\n{1}",
 			"patterns": [
-				{ "include": "#todo-checkbox", "comment": "the todo checkbox" }, 
-				{ "include": "#todo-type", "comment": "the todo type (optional)" },
-				{ "include": "#todo-description-important", "comment": "important todo-description" },
-				{ "include": "#todo-description", "comment": "regular todo-description" },
-				{ "include": "#todo-tags", "comment": "todo tags" }
+				{
+					"include": "#todo-checkbox",
+					"comment": "the todo checkbox"
+				},
+				{
+					"include": "#todo-type",
+					"comment": "the todo type (optional)"
+				},
+				{
+					"include": "#todo-description-important",
+					"comment": "important todo-description"
+				},
+				{
+					"include": "#todo-description",
+					"comment": "regular todo-description"
+				},
+				{
+					"include": "#todo-tags",
+					"comment": "todo tags"
+				}
 			]
 		},
 		"todo-checkbox": {
 			"name": "entity.checkbox",
 			"patterns": [
-				{"include": "#todo-checkbox-undone" },
-				{"include": "#todo-checkbox-done" }
+				{
+					"include": "#todo-checkbox-undone"
+				},
+				{
+					"include": "#todo-checkbox-done"
+				}
 			]
 		},
 		"todo-checkbox-undone": {
@@ -62,7 +101,7 @@
 			"name": "constant.numeric",
 			"match": "[x]"
 		},
-		"todo-type": {	
+		"todo-type": {
 			"name": "entity.type",
 			"match": "( )|🎨|🐛|📃|🔥|🚚|🐟|👀"
 		},
@@ -72,7 +111,7 @@
 		},
 		"todo-description": {
 			"name": "string.double",
-			"match": "[a-zA-Z\\s]+"
+			"match": "[a-zA-Z\\s]+(?:[\n]{1})"
 		}
 	}
 }
