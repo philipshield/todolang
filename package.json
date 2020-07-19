@@ -7,7 +7,7 @@
 	],
 	"description": "Manage your todo items in .todo files",
 	"publisher": "philipshield",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/philipshield/todolang"
