@@ -2,6 +2,7 @@
 	"name": "todolang",
 	"displayName": "todolang",
 	"license": "UNLICENCED",
+	"icon": "img/logo.png",
 	"categories": [
 		"Programming Languages"
 	],
