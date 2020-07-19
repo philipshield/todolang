@@ -95,11 +95,11 @@
 		},
 		"todo-checkbox-undone": {
 			"name": "meta.checkbox",
-			"match": "[ ]"
+			"match": "\\[ \\]"
 		},
 		"todo-checkbox-done": {
 			"name": "constant.numeric",
-			"match": "[x]"
+			"match": "\\[x\\]"
 		},
 		"todo-type": {
 			"name": "entity.type",
@@ -111,7 +111,7 @@
 		},
 		"todo-description": {
 			"name": "string.double",
-			"match": "[a-zA-Z\\s]+(?:[\n]{1})"
+			"match": ".*"
 		}
 	}
 }
