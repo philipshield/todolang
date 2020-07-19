@@ -7,15 +7,15 @@ export function activate(context: vscode.ExtensionContext) {
 	})
 
 	context.subscriptions.push(vscode.commands.registerCommand(Todolang.tickTodoCommandId, Todolang.tickTodoCommand));
-  context.subscriptions.push(vscode.commands.registerCommand(Todolang.toggleImportantCommandId, Todolang.toggleImportantCommand));
-  context.subscriptions.push(vscode.commands.registerCommand(Todolang.sortByTickedCommandId, Todolang.sortByTickedCommand));
+  	context.subscriptions.push(vscode.commands.registerCommand(Todolang.toggleImportantCommandId, Todolang.toggleImportantCommand));
+  	context.subscriptions.push(vscode.commands.registerCommand(Todolang.sortByTickedCommandId, Todolang.sortByTickedCommand));
 }
 
 export class Todolang implements vscode.CodeActionProvider {
 	public static readonly providedCodeActionKinds = [ vscode.CodeActionKind.Refactor ];
 	public static readonly tickTodoCommandId: string = "todolang.tickTodo";
-  public static readonly toggleImportantCommandId: string = "todolang.toggleImportant"
-  public static readonly sortByTickedCommandId: string = "todolang.sortByTickedCommandId"
+  	public static readonly toggleImportantCommandId: string = "todolang.toggleImportant"
+  	public static readonly sortByTickedCommandId: string = "todolang.sortByTickedCommandId"
 
 	public provideCodeActions(document: vscode.TextDocument, range: vscode.Range, context: vscode.CodeActionContext): (vscode.CodeAction)[] {	
 		let actions : (vscode.CodeAction)[] = [];

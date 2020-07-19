@@ -1,15 +1,25 @@
 {
 	"name": "todolang",
 	"displayName": "todolang",
+	"categories": [
+		"Programming Languages"
+	],
 	"description": "Manage your todo items in .todo files",
-	"version": "0.0.1",
 	"publisher": "philipshield",
-	"repository": { "type": "git", "url": "https://github.com/philipshield/todolang"},
-	"categories": [ "Programming Languages" ],
-	"engines": { "vscode": "^1.32.0" },
+	"version": "0.0.1",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/philipshield/todolang"
+	},
+	"homepage": "https://github.com/philipshield/todolang",
+	"engines": {
+		"vscode": "^1.32.0"
+	},
 	"main": "./out/extension",
 	"preview": true,
-	"activationEvents": [ "onLanguage:todolang" ],
+	"activationEvents": [
+		"onLanguage:todolang"
+	],
 	"contributes": {
 		"languages": [
 			{
@@ -24,7 +34,7 @@
 				"configuration": "./language-configuration.json"
 			}
 		],
-		"keybindings":[
+		"keybindings": [
 			{
 				"title": "Check/Uncheck TODO",
 				"command": "todolang.tickTodo",
@@ -56,12 +66,9 @@
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
-		"lint": "tslint ./src/*.ts",
 		"watch": "tsc -watch -p ./"
 	},
 	"devDependencies": {
-		"@types/node": "^6.0.40",
-		"tslint": "^5.16.0",
 		"typescript": "^3.5.1",
 		"@types/vscode": "^1.32.0"
 	}
