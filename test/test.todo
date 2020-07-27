@@ -1,13 +1,12 @@
 
 
-(task)
 (#CM-1234) Cool new game:
     - [ ] 🎨 variable for command names.
-    - [ ] 🎉 description
+    - [ ] 🎉 description.
+    - [ ] 📃 write some docs!
 ----
 
-(task, nonfocus)
-(#CM-1231) Cool new game:
+(#CM-1231, nonfocus) Cool new game:
 - [x] 🚚 very important work work!
 - [ ] 📃 document some stuff
 ----

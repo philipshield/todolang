@@ -6,12 +6,15 @@
     - [ ] 🔥 minimist devdependency has security issues according to github!
     - [ ] 🎉 Create logotype for extension.
     - [ ] 🐟 build is not in .gitignore
+    - [ ] 🎉 Create logotype for extension
+    - [x] 🐟 build is not in .gitignore
+    - [x] 🎉 Grammar: make task grammar cleaner
     - [ ] 🎉 Collaboration Feature: cloud storage / github
     - [ ] 🎉 Code Feature: server side Jira Completion provider
     - [ ] 📃 Introduce new users to main concepts better
     - [ ] 📃 Readme tutorial is too verbose
     - [ ] 🎉 Format on Save
-    - [ ] 🎉 Customize emojis and key-bindings.
+    - [ ] 🎉 Customize emojis and key-bindings
     - [ ] 🐟 "tags" refactor suggestion on todo-line code action context.
     - [ ] 🎉 CodeAction: change type (emoji)
     - [ ] 🎉 CodeAction: Add task for current group/selection.
@@ -30,4 +33,7 @@
     - [ ] 🎉 Grammar: Mark as won't do
     - [ ] 🚚 Grammar: Better task syntax (with sub-categories)
     - [ ] 🚚 Grammar: Better tags syntax, maybe brackets?
+    - [x] 🚚 Grammar scopes for "non-focused task"
+    - [ ] 🚚 Support adding tags to task when no paranthesis exists
+    - [ ] 🚚 Grammar: task syntax with optional tags
 ----

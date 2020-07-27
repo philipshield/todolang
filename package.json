@@ -1,15 +1,27 @@
 {
 	"name": "todolang",
 	"displayName": "todolang",
+	"license": "UNLICENCED",
+	"icon": "img/logo.png",
+	"categories": [
+		"Programming Languages"
+	],
 	"description": "Manage your todo items in .todo files",
-	"version": "0.0.1",
 	"publisher": "philipshield",
-	"repository": { "type": "git", "url": "https://github.com/philipshield/todolang"},
-	"categories": [ "Programming Languages" ],
-	"engines": { "vscode": "^1.32.0" },
+	"version": "0.1.3",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/philipshield/todolang"
+	},
+	"homepage": "https://github.com/philipshield/todolang",
+	"engines": {
+		"vscode": "^1.32.0"
+	},
 	"main": "./out/extension",
 	"preview": true,
-	"activationEvents": [ "onLanguage:todolang" ],
+	"activationEvents": [
+		"onLanguage:todolang"
+	],
 	"contributes": {
 		"languages": [
 			{
@@ -24,7 +36,7 @@
 				"configuration": "./language-configuration.json"
 			}
 		],
-		"keybindings":[
+		"keybindings": [
 			{
 				"title": "Check/Uncheck TODO",
 				"command": "todolang.tickTodo",
@@ -56,13 +68,14 @@
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
-		"lint": "tslint ./src/*.ts",
+		"lint": "eslint -c .eslintrc.json --ext .ts ./src",
 		"watch": "tsc -watch -p ./"
 	},
 	"devDependencies": {
-		"@types/node": "^6.0.40",
-		"tslint": "^5.16.0",
-		"typescript": "^3.5.1",
-		"@types/vscode": "^1.32.0"
+		"@types/vscode": "^1.32.0",
+		"@typescript-eslint/eslint-plugin": "^3.6.1",
+		"@typescript-eslint/parser": "^3.6.1",
+		"eslint": "^7.5.0",
+		"typescript": "^3.5.1"
 	}
 }

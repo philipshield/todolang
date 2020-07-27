@@ -1,26 +1,24 @@
-# todolang
-Handle personal todo-items in a single .todo document.
+# Overview
+Todolang provides tools such as `syntax highlighing`, `code snippets` and `code actions` for managing tasks and todos in `.todo` files.
 
-## Get Started
-The extension provides tools for managing todo items within .todo files.
-The todo syntax highlighter is designed for todo readability and parseability, for example identifiying extra important todos and non-focused groups of todos.
-
-# Document Elements
+<!--- 
 ![Demo](/img/todolang_demo.gif)
 ![Overview](/img/2.png)
 ![Focused/Non-focused tasks](/img/3.png)
 ![Refactorings/Suggested actions](/img/5.png)
+-->
 
-## Refactorings
-Todoitem::tick - toggles the todo checkbox
-Todoitem::important - marks the todo as important
-Task::nonfocus - marks a task a not in focus
+## Code Actions
+`Todo::tick` - toggles the todo checkbox. (default key-binding: alt-D).\
+`Todo::important` - marks the todo as important.\
+`Task::nonfocus` - marks a task a not in focus.
 
 ## Snippets
-Create Task - create a task elements with optional JIRA ID.
-Create Todo - create a todo item with optional Unicode type
+`todo`: Create Task - create a task in which you can group todos.\
+`task`: Create Todo - create a todo item.\
 
-# Debugging tips
-* There is a helpful editor debug command called: "Developer: Inspect Editor Tokens and Scopes"
+# Contribute
+## Debugging tips
+* "Developer: Inspect Editor Tokens and Scopes" command is helpful to inspect Textmate scopes.
 * When developing, check the highlighting experience with multiple different themes.
 
