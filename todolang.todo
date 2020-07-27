@@ -1,39 +1,50 @@
 (#TD-1233) Todolang:
-    - [ ] 🔥 don't have [x] as a part in create snippet
     - [x] 🚚 Grammar scopes for "non-focused task"
-    - [x] 🐟 Todo eol preventing snippet on consecutive line. 
-    - [x] 🎉 Grammar: make task grammar cleaner
-    - [ ] 🔥 minimist devdependency has security issues according to github!
-    - [ ] 🎉 Create logotype for extension.
-    - [ ] 🐟 build is not in .gitignore
-    - [ ] 🎉 Create logotype for extension
+    - [x] 🎉 Create logotype for extension
     - [x] 🐟 build is not in .gitignore
     - [x] 🎉 Grammar: make task grammar cleaner
-    - [ ] 🎉 Collaboration Feature: cloud storage / github
-    - [ ] 🎉 Code Feature: server side Jira Completion provider
-    - [ ] 📃 Introduce new users to main concepts better
-    - [ ] 📃 Readme tutorial is too verbose
-    - [ ] 🎉 Format on Save
-    - [ ] 🎉 Customize emojis and key-bindings
-    - [ ] 🐟 "tags" refactor suggestion on todo-line code action context.
-    - [ ] 🎉 CodeAction: change type (emoji)
-    - [ ] 🎉 CodeAction: Add task for current group/selection.
-    - [ ] 🎉 Code feature: Go-To symbol task/todo.
-    - [ ] 🐟 Prevent intellisense suggesting snippet keywords
-    - [ ] 🎉 Grammar feature: description/comments/notes for TODO item.
-    - [ ] 🎉 CodeAction: select task/todo/group.
-    - [ ] 🎉 CodeAction: TickTodos multiselection
-    - [ ] 🐛 Mark as important doesn't handle other ending characters like "." or "?"
-    - [ ] 🎉 CodeAction: sort by ticked.
-    - [ ] 👀 better to choose type after writing description?
-    - [ ] 🚚 how to distribute syntax colours easily?
-    - [ ] 🎉 Save file in cloud
-    - [ ] 🎉 Support with file extension, not theme
-    - [ ] 🎉 Refactor: change type icon
-    - [ ] 🎉 Grammar: Mark as won't do
-    - [ ] 🚚 Grammar: Better task syntax (with sub-categories)
-    - [ ] 🚚 Grammar: Better tags syntax, maybe brackets?
+    - [x] 🐟 Todo eol preventing snippet on consecutive line. 
     - [x] 🚚 Grammar scopes for "non-focused task"
-    - [ ] 🚚 Support adding tags to task when no paranthesis exists
-    - [ ] 🚚 Grammar: task syntax with optional tags
+    - [x] 🔥 don't have [x] as a part in create snippet
+    - [x] 🎉 Create logotype for extension.
+    - [x] 📃 Readme tutorial is too verbose
+    - [x] 🎉 Collaboration Feature: cloud storage / github (wont-do)
+    - [x] 🎉 CodeAction: sort by ticked.
+    - [x] 🎉 Support with file extension, not theme
+    - [x] 🚚 How to distribute syntax colours easily?
+    - [ ] 🔥 Minimist devdependency has security issues according to github!
+    - [ ] 🐛 Sort by ticked does not handle non todo lines.
+    - [ ] 🐛 Mark as important doesn't handle other ending characters like "." or "?"
+    - [ ] 🐟 "tags" refactor suggestion on todo-line code action context.
+    - [ ] 🐟 Prevent intellisense suggesting snippet keywords
+    - [ ] 📃 Introduce new users to main concepts better
+    - [ ] 👀 better to choose type after writing description?
+
+Features:
+    - [ ] 👀 Server side Jira Completion provider
+    - [ ] 👀 Format on Save
+    - [ ] 👀 Go-To symbol task/todo.
+
+Grammar:
+    - [ ] 🚚 Better task syntax
+        - [ ] Task sub-sections
+        - [ ] Task sub-description
+    - [ ] 🚚 Better tags syntax
+        - [ ] prefix?
+        - [ ] Support add tag without any previous tags
+        - [ ] value-pair syntax?
+    - [ ] 🚚 Better Todo syntax
+        - [ ] free form description/comments/notes beneath item
+    - [ ] 🎉 Customize emojis and key-bindings
+
+Code Actions:
+    - [ ] 🎉 Change type (emoji)
+    - [ ] 🎉 Add task for current group/selection.
+    - [ ] 🎉 Select task/todo/group.
+    - [ ] 🎉 TickTodos multiselection
+    - [ ] 🎉 Sort by type 🐟🚚🐛🏇👀🎉🔥
+    - [ ] 👀 Group-by heading
+tags:
+    - [ ] 🎉 Mark as won't do
+    - [ ] 👀 Mark as questionable?
 ----
