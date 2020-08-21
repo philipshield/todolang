@@ -1,31 +1,35 @@
 (#TD-1233) Todolang:
-    - [x] 🚚 Grammar scopes for "non-focused task"
-    - [x] 🎉 Create logotype for extension
-    - [x] 🐟 build is not in .gitignore
-    - [x] 🎉 Grammar: make task grammar cleaner
-    - [x] 🐟 Todo eol preventing snippet on consecutive line. 
-    - [x] 🚚 Grammar scopes for "non-focused task"
-    - [x] 🔥 don't have [x] as a part in create snippet
-    - [x] 🎉 Create logotype for extension.
-    - [x] 📃 Readme tutorial is too verbose
-    - [x] 🎉 Collaboration Feature: cloud storage / github (wont-do)
-    - [x] 🎉 CodeAction: sort by ticked.
-    - [x] 🎉 Support with file extension, not theme
+    - [x] 🔥 Minimist devdependency has security issues according to github!
     - [x] 🚚 How to distribute syntax colours easily?
-    - [ ] 🔥 Minimist devdependency has security issues according to github!
+    - [x] 🎉 Support with file extension, not theme
+    - [x] 🎉 CodeAction: sort by ticked.
+    - [x] 🎉 Collaboration Feature: cloud storage / github (wont-do)
+    - [x] 📃 Readme tutorial is too verbose
+    - [x] 🎉 Create logotype for extension.
+    - [x] 🔥 don't have [x] as a part in create snippet
+    - [x] 🚚 Grammar scopes for "non-focused task"
+    - [x] 🐟 Todo eol preventing snippet on consecutive line. 
+    - [x] 🎉 Grammar: make task grammar cleaner
+    - [x] 🐟 build is not in .gitignore
+    - [x] 🎉 Create logotype for extension
+    - [x] 🚚 Grammar scopes for "non-focused task"
     - [ ] 🐛 Sort by ticked does not handle non todo lines.
     - [ ] 🐛 Mark as important doesn't handle other ending characters like "." or "?"
     - [ ] 🐟 "tags" refactor suggestion on todo-line code action context.
     - [ ] 🐟 Prevent intellisense suggesting snippet keywords
     - [ ] 📃 Introduce new users to main concepts better
     - [ ] 👀 better to choose type after writing description?
-
 Features:
     - [ ] 👀 Server side Jira Completion provider
     - [ ] 👀 Format on Save
     - [ ] 👀 Go-To symbol task/todo.
-
+    - [ ] 👀 Any way to interact ok on phone?
+        * maybe a view-only mode?
+        * "inbox"
+    - [ ] 🎉 Create JIRA from TODO.
 Grammar:
+    - [ ] 🚚 Implement grammar with language server
+    - [ ] 🚚 Implement code actions with tokenizer
     - [ ] 🚚 Better task syntax
         - [ ] Task sub-sections
         - [ ] Task sub-description
@@ -36,7 +40,6 @@ Grammar:
     - [ ] 🚚 Better Todo syntax
         - [ ] free form description/comments/notes beneath item
     - [ ] 🎉 Customize emojis and key-bindings
-
 Code Actions:
     - [ ] 🎉 Change type (emoji)
     - [ ] 🎉 Add task for current group/selection.
